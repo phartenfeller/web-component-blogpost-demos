@@ -1,0 +1,12 @@
+{
+  "name": "vanilla-js",
+  "version": "1.0.0",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.4.5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  }
+}

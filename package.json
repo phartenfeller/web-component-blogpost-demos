@@ -1,0 +1,13 @@
+{
+  "name": "web-component-blogpost-demos",
+  "private": true,
+  "version": "1.0.0",
+  "repository": "git@github.com:phartenfeller/web-component-blogpost-demos.git",
+  "author": "phartenfeller <github@hartenfeller.dev>",
+  "license": "MIT",
+  "workspaces": [
+    "vanilla-js",
+    "tests/vanilla-only-template",
+    "tests/vanilla-template-and-cust-ele"
+  ]
+}
