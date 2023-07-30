@@ -8,6 +8,7 @@
   "workspaces": [
     "vanilla-js",
     "tests/vanilla-only-template",
-    "tests/vanilla-template-and-cust-ele"
+    "tests/vanilla-template-and-cust-ele",
+    "tests/vanilla-shadow-dom"
   ]
 }
