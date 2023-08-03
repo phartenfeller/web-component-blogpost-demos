@@ -35,8 +35,7 @@ template.innerHTML = `
     <label for="depth">Depth (meters)</label>
     <input id="depth" type="number" min="0" />
   </div>
-  <button id="calculate">Calculate (constr)</button>
-  <button id="calculate-cb">Calculate (conn cb)</button>
+  <button id="calculate">Calculate</button>
 </div>
 <div class="output-section">
   <label>Water Capacity (cubic liters): </label>
@@ -51,34 +50,40 @@ class PoolDimensions extends HTMLElement {
   constructor() {
     // always call super() first in the constructor
     super();
-    console.log("constructor");
+
     const templateClone = template.content.cloneNode(true);
 
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(templateClone);
 
-    this.logClick = this.logClick.bind(this);
-    this.lenInp = this.shadowRoot.querySelector("#length");
+    this.calcBtn = this.shadowRoot.querySelector("#calculate");
+    this.lengthInput = this.shadowRoot.querySelector("#length");
+    this.widthInput = this.shadowRoot.querySelector("#width");
+    this.depthInput = this.shadowRoot.querySelector("#depth");
+    this.capacityOutput = this.shadowRoot.querySelector("#capacity");
+    this.areaInput = this.shadowRoot.querySelector("#area");
 
-    this.button = this.shadowRoot.querySelector("#calculate");
-    this.cbButton = this.shadowRoot.querySelector("#calculate-cb");
-
-    this.button.addEventListener("click", this.logClick);
+    this.calculate = this.calculate.bind(this);
   }
 
   connectedCallback() {
-    console.log("connectedCallback");
-    this.cbButton.addEventListener("click", this.logClick);
+    this.calcBtn.addEventListener("click", this.calculate);
   }
 
   disconnectedCallback() {
-    console.log("disconnectedCallback");
-    this.button.removeEventListener("click", this.logClick);
-    this.cbButton.removeEventListener("click", this.logClick);
+    this.calcBtn.removeEventListener("click", this.calculate);
   }
 
-  logClick(e) {
-    console.log("clicked", e.target.textContent, "length", this.lenInp.value);
+  calculate() {
+    const length = this.lengthInput.valueAsNumber;
+    const width = this.widthInput.valueAsNumber;
+    const depth = this.depthInput.valueAsNumber;
+
+    const capacity = length * width * depth;
+    const area = 2 * (width * depth + length * depth) + length * width; // walls + floor
+
+    this.capacityOutput.textContent = capacity;
+    this.areaInput.textContent = area;
   }
 }
 

@@ -11,6 +11,8 @@
     "tests/vanilla-template-and-cust-ele",
     "tests/vanilla-shadow-dom",
     "tests/vanilla-prop",
-    "tests/vanilla-attr-prop-sync"
+    "tests/vanilla-attr-prop-sync",
+    "tests/vanilla-event-listener",
+    "tests/vanilla-basic-calc"
   ]
 }
