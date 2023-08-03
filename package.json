@@ -9,6 +9,8 @@
     "vanilla-js",
     "tests/vanilla-only-template",
     "tests/vanilla-template-and-cust-ele",
-    "tests/vanilla-shadow-dom"
+    "tests/vanilla-shadow-dom",
+    "tests/vanilla-prop",
+    "tests/vanilla-attr-prop-sync"
   ]
 }

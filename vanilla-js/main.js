@@ -67,27 +67,44 @@ class PoolDimensions extends HTMLElement {
     this.capacityUnits = this.shadowRoot.querySelector(".capacity-unit");
     this.areaUnits = this.shadowRoot.querySelector(".area-unit");
 
-    this.calculate = this.calculate.bind(this);
-
     this.isMetric = true;
   }
 
   connectedCallback() {
-    this.shadowRoot
-      .getElementById("calculate")
-      .addEventListener("click", this.calculate);
+    this.calcBtn = this.shadowRoot.getElementById("calculate");
+    this.calcBtn.addEventListener("click", this.calculate);
+
     this.setUnits();
+
+    if (this.data) {
+      const { length, width, depth } = this.data;
+      this.lengthInput.value = length;
+      this.widthInput.value = width;
+      this.depthInput.value = depth;
+      this.calculate();
+    }
   }
 
   disconnectedCallback() {
-    this.shadowRoot
-      .getElementById("calculate")
-      .removeEventListener("click", this.calculate);
+    console.log(`[${this.getAttribute("id")}] disconnectedCallback.`);
+    this.calcBtn.removeEventListener("click", this.calculate);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "units") {
-      this.setUnits();
+    console.log(`[${this.getAttribute("id")}] attributeChangedCallback:`, {
+      name,
+      oldValue,
+      newValue,
+    });
+    switch (name) {
+      case "units":
+        this.setUnits();
+        break;
+      default:
+        console.warn(
+          `[${this.getAttribute("id")}] Unhandled attribute change:`,
+          name
+        );
     }
   }
 
@@ -102,6 +119,9 @@ class PoolDimensions extends HTMLElement {
     this.areaUnits.textContent = this.isMetric
       ? "square meters"
       : "square feet";
+
+    // recalc
+    this.calculate();
   }
 
   calculate() {

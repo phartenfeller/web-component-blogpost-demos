@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pool Dimensions</title>
+  <script type="module" src="/main.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <pool-dimensions></pool-dimensions>
+    <div style="margin: 20px 0px;">
+      <span id="move-target" style="font-weight: bold; background-color: peachpuff; padding: 8px;">Text</span>
+    </div>
+  </div>
+
+  <button id="move">Move element</button>
+
+  <script>
+    const poolDimensions = document.querySelector('pool-dimensions');
+    const moveTarget = document.querySelector('#move-target');
+
+    document.querySelector('#move').addEventListener('click', () => {
+      console.log('move');
+      moveTarget.after(poolDimensions);
+    });
+  </script>
+</body>
+
+</html>

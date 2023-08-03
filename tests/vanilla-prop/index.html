@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pool Dimensions</title>
+  <script type="module" src="/main.js"></script>
+  <style>
+    label {
+      color: lawngreen;
+      font-size: larger;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <prop-test></prop-test>
+  </div>
+
+  <script>
+    const propTest = document.querySelector('prop-test');
+    setInterval(() => {
+      console.log('prev', propTest.prop1)
+      propTest.prop1 = Math.random();
+    }, 1000);
+  </script>
+</body>
+
+</html>

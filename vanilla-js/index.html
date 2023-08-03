@@ -11,12 +11,50 @@
 <body>
   <div id="app">
     <div>
-      <pool-dimensions></pool-dimensions>
+      <h2>Default HTML, no attribute</h2>
+      <pool-dimensions id="no-attributes"></pool-dimensions>
     </div>
+    <hr style="margin-top: 12px; margin-bottom: 12px;">
     <div>
-      <pool-dimensions units="imperial"></pool-dimensions>
+      <h2>HTML, units attribute set to imperial</h2>
+      <pool-dimensions id="html-attribute" units="imperial"></pool-dimensions>
+    </div>
+    <hr style="margin-top: 12px; margin-bottom: 12px;">
+    <div id="js-imp-setattribute">
+      <h2>Init from JS, setAttribute to imperial</h2>
+    </div>
+    <hr style="margin-top: 12px; margin-bottom: 12px;">
+    <div id="js-imp-setproperty">
+      <h2>Init from JS, set property: el.units = 'imperial'</h2>
+      <p>Does not work as units is an attribute not a property</p>
+    </div>
+    <hr style="margin-top: 12px; margin-bottom: 12px;">
+    <div>
+      <h2>HTML, data property</h2>
+      <pool-dimensions id="html-data-prop" units="metric"></pool-dimensions>
     </div>
   </div>
+
+  <script>
+    const jsImp = document.querySelector('#js-imp-setattribute');
+    const poolDimensions = document.createElement('pool-dimensions');
+    poolDimensions.id = 'js-setattribute';
+    poolDimensions.setAttribute('units', 'imperial');
+    jsImp.appendChild(poolDimensions);
+
+    const jsImpProp = document.querySelector('#js-imp-setproperty');
+    const poolDimensionsProp = document.createElement('pool-dimensions');
+    poolDimensionsProp.id = 'js-setproperty';
+    poolDimensionsProp.units = 'imperial';
+    jsImpProp.appendChild(poolDimensionsProp);
+
+    const htmlDataProp = document.querySelector('#html-data-prop');
+    htmlDataProp.data = {
+      length: 2,
+      width: 3,
+      depth: 4,
+    };
+  </script>
 </body>
 
 </html>
