@@ -38,7 +38,7 @@ template.innerHTML = `
   <button id="calculate">Calculate</button>
 </div>
 <div class="output-section">
-  <label>Water Capacity (cubic liters): </label>
+  <label>Water Capacity (liters): </label>
   <span id="capacity"></span>
   <br />
   <label>Surface Area (square meters): </label>

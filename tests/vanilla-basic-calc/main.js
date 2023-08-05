@@ -38,7 +38,7 @@ template.innerHTML = `
   <button id="calculate">Calculate</button>
 </div>
 <div class="output-section">
-  <label>Water Capacity (cubic liters): </label>
+  <label>Water Capacity (liters): </label>
   <span id="capacity"></span>
   <br />
   <label>Surface Area (square meters): </label>
@@ -61,7 +61,7 @@ class PoolDimensions extends HTMLElement {
     this.widthInput = this.shadowRoot.querySelector("#width");
     this.depthInput = this.shadowRoot.querySelector("#depth");
     this.capacityOutput = this.shadowRoot.querySelector("#capacity");
-    this.areaInput = this.shadowRoot.querySelector("#area");
+    this.areaOutput = this.shadowRoot.querySelector("#area");
 
     this.calculate = this.calculate.bind(this);
   }
@@ -83,7 +83,7 @@ class PoolDimensions extends HTMLElement {
     const area = 2 * (width * depth + length * depth) + length * width; // walls + floor
 
     this.capacityOutput.textContent = capacity;
-    this.areaInput.textContent = area;
+    this.areaOutput.textContent = area;
   }
 }
 

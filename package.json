@@ -13,6 +13,7 @@
     "tests/vanilla-prop",
     "tests/vanilla-attr-prop-sync",
     "tests/vanilla-event-listener",
-    "tests/vanilla-basic-calc"
+    "tests/vanilla-basic-calc",
+    "tests/vanilla-attribute"
   ]
 }
