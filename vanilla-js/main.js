@@ -68,6 +68,8 @@ class PoolDimensions extends HTMLElement {
     this.areaText = this.shadowRoot.querySelector(".area-unit");
 
     this.isMetric = true;
+
+    this.calculate = this.calculate.bind(this);
   }
 
   connectedCallback() {
