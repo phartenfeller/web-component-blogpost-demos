@@ -156,6 +156,21 @@ class PoolDimensions extends HTMLElement {
     }
     this.areaOutput.textContent = area;
   }
+
+  get data() {
+    return {
+      length: this.lengthInput.valueAsNumber,
+      width: this.widthInput.valueAsNumber,
+      depth: this.depthInput.valueAsNumber,
+    };
+  }
+
+  set data({ length, width, depth }) {
+    this.lengthInput.value = length;
+    this.widthInput.value = width;
+    this.depthInput.value = depth;
+    this.calculate();
+  }
 }
 
 customElements.define("pool-dimensions", PoolDimensions);

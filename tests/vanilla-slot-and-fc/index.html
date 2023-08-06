@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modal Dialog</title>
+  <script type="module" src="/main.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <button id="opn-mdl">Open Modal</button>
+    <button id="prv-mthd">Call private method</button>
+    <my-dialog title="Hello World!">
+      <div slot="content">
+        <p>Some content</p>
+        <ul>
+          <li>Some</li>
+          <li>Content</li>
+        </ul>
+      </div>
+    </my-dialog>
+  </div>
+
+  <script>
+    const btn = document.querySelector('#opn-mdl');
+    const prvMthdBtn = document.querySelector('#prv-mthd');
+    const dialog = document.querySelector('my-dialog');
+
+    btn.addEventListener('click', () => {
+      dialog.open();
+    });
+
+    prvMthdBtn.addEventListener('click', () => {
+      // eval as this would throw on page load
+      eval(`document.querySelector('my-dialog').#privateMethod();`);
+    });
+  </script>
+</body>
+
+</html>
