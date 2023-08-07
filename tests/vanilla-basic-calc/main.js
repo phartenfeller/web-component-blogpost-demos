@@ -53,15 +53,15 @@ class PoolDimensions extends HTMLElement {
 
     const templateClone = template.content.cloneNode(true);
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(templateClone);
+    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow.appendChild(templateClone);
 
-    this.calcBtn = this.shadowRoot.querySelector("#calculate");
-    this.lengthInput = this.shadowRoot.querySelector("#length");
-    this.widthInput = this.shadowRoot.querySelector("#width");
-    this.depthInput = this.shadowRoot.querySelector("#depth");
-    this.capacityOutput = this.shadowRoot.querySelector("#capacity");
-    this.areaOutput = this.shadowRoot.querySelector("#area");
+    this.calcBtn = this.shadow.querySelector("#calculate");
+    this.lengthInput = this.shadow.querySelector("#length");
+    this.widthInput = this.shadow.querySelector("#width");
+    this.depthInput = this.shadow.querySelector("#depth");
+    this.capacityOutput = this.shadow.querySelector("#capacity");
+    this.areaOutput = this.shadow.querySelector("#area");
 
     this.calculate = this.calculate.bind(this);
   }
@@ -79,8 +79,12 @@ class PoolDimensions extends HTMLElement {
     const width = this.widthInput.valueAsNumber;
     const depth = this.depthInput.valueAsNumber;
 
-    const capacity = length * width * depth;
+    const capacity = length * width * depth * 1000; // cubic meters to liters
     const area = 2 * (width * depth + length * depth) + length * width; // walls + floor
+
+    if (isNaN(capacity) || isNaN(area)) {
+      return;
+    }
 
     this.capacityOutput.textContent = capacity;
     this.areaOutput.textContent = area;

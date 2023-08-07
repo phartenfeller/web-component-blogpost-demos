@@ -50,10 +50,10 @@ class PoolDimensions extends HTMLElement {
   constructor() {
     // always call super() first in the constructor
     super();
-    this.attachShadow({ mode: "open" });
+    this.shadow = this.attachShadow({ mode: "open" });
 
     const templateClone = template.content.cloneNode(true);
-    this.shadowRoot.appendChild(templateClone);
+    this.shadow.appendChild(templateClone);
   }
 }
 

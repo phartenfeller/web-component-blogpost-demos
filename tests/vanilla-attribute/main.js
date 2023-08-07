@@ -57,19 +57,19 @@ class PoolDimensions extends HTMLElement {
 
     const templateClone = template.content.cloneNode(true);
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(templateClone);
+    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow.appendChild(templateClone);
 
-    this.calcBtn = this.shadowRoot.querySelector("#calculate");
-    this.lengthInput = this.shadowRoot.querySelector("#length");
-    this.widthInput = this.shadowRoot.querySelector("#width");
-    this.depthInput = this.shadowRoot.querySelector("#depth");
-    this.capacityOutput = this.shadowRoot.querySelector("#capacity");
-    this.areaOutput = this.shadowRoot.querySelector("#area");
+    this.calcBtn = this.shadow.querySelector("#calculate");
+    this.lengthInput = this.shadow.querySelector("#length");
+    this.widthInput = this.shadow.querySelector("#width");
+    this.depthInput = this.shadow.querySelector("#depth");
+    this.capacityOutput = this.shadow.querySelector("#capacity");
+    this.areaOutput = this.shadow.querySelector("#area");
 
-    this.lengthTexts = this.shadowRoot.querySelectorAll(".length-unit");
-    this.capacityText = this.shadowRoot.querySelector(".capacity-unit");
-    this.areaText = this.shadowRoot.querySelector(".area-unit");
+    this.lengthTexts = this.shadow.querySelectorAll(".length-unit");
+    this.capacityText = this.shadow.querySelector(".capacity-unit");
+    this.areaText = this.shadow.querySelector(".area-unit");
 
     this.calculate = this.calculate.bind(this);
   }

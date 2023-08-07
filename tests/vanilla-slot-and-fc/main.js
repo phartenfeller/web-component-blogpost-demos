@@ -42,15 +42,15 @@ class DialogComponent extends HTMLElement {
 
     const templateClone = template.content.cloneNode(true);
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(templateClone);
+    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow.appendChild(templateClone);
 
-    this.dialogEl = this.shadowRoot.querySelector("dialog");
-    this.headerEl = this.shadowRoot.querySelector(".dialog-header");
+    this.dialogEl = this.shadow.querySelector("dialog");
+    this.headerEl = this.shadow.querySelector(".dialog-header");
   }
 
   connectedCallback() {
-    this.shadowRoot.querySelector("button").addEventListener("click", () => {
+    this.shadow.querySelector("button").addEventListener("click", () => {
       this.close();
     });
     this.headerEl.textContent = this.getAttribute("title");

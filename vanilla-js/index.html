@@ -48,13 +48,16 @@
     poolDimensionsProp.units = 'imperial';
     jsImpProp.appendChild(poolDimensionsProp);
 
-    const htmlDataProp = document.querySelector('#html-data-prop');
-    htmlDataProp.data = {
-      length: 2,
-      width: 3,
-      depth: 4,
-    };
-    console.log('htmlDataProp.data', htmlDataProp.data)
+    setTimeout(() => {
+      const htmlDataProp = document.querySelector('#html-data-prop');
+      htmlDataProp.data = {
+        length: 2,
+        width: 3,
+        depth: 4,
+      };
+    }, 500)
+
+    // console.log('htmlDataProp.data', htmlDataProp.data)
   </script>
 </body>
 

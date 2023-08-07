@@ -15,8 +15,8 @@ class PropTest extends HTMLElement {
     super();
     const templateClone = template.content.cloneNode(true);
 
-    const shadowRoot = this.attachShadow({ mode: "open" });
-    shadowRoot.appendChild(templateClone);
+    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow.appendChild(templateClone);
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -25,7 +25,7 @@ class PropTest extends HTMLElement {
   }
 
   setText(text) {
-    this.shadowRoot.querySelector(".input-section").textContent = text;
+    this.shadow.querySelector(".input-section").textContent = text;
   }
 
   set prop1(value) {

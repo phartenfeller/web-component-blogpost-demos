@@ -54,14 +54,15 @@ class PoolDimensions extends HTMLElement {
     console.log("constructor");
     const templateClone = template.content.cloneNode(true);
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(templateClone);
-
     this.logClick = this.logClick.bind(this);
-    this.lenInp = this.shadowRoot.querySelector("#length");
 
-    this.button = this.shadowRoot.querySelector("#calculate");
-    this.cbButton = this.shadowRoot.querySelector("#calculate-cb");
+    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow.appendChild(templateClone);
+
+    this.lenInp = this.shadow.querySelector("#length");
+
+    this.button = this.shadow.querySelector("#calculate");
+    this.cbButton = this.shadow.querySelector("#calculate-cb");
 
     this.button.addEventListener("click", this.logClick);
   }
@@ -78,6 +79,7 @@ class PoolDimensions extends HTMLElement {
   }
 
   logClick(e) {
+    console.log("this", this);
     console.log("clicked", e.target.textContent, "length", this.lenInp.value);
   }
 }

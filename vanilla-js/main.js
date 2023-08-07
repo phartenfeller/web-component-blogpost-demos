@@ -54,18 +54,18 @@ class PoolDimensions extends HTMLElement {
   constructor() {
     super();
 
-    this.attachShadow({ mode: "open" });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.shadow = this.attachShadow({ mode: "open" });
+    this.shadow.appendChild(template.content.cloneNode(true));
 
-    this.lengthInput = this.shadowRoot.getElementById("length");
-    this.widthInput = this.shadowRoot.getElementById("width");
-    this.depthInput = this.shadowRoot.getElementById("depth");
-    this.capacityOutput = this.shadowRoot.getElementById("capacity");
-    this.areaOutput = this.shadowRoot.getElementById("area");
+    this.lengthInput = this.shadow.getElementById("length");
+    this.widthInput = this.shadow.getElementById("width");
+    this.depthInput = this.shadow.getElementById("depth");
+    this.capacityOutput = this.shadow.getElementById("capacity");
+    this.areaOutput = this.shadow.getElementById("area");
 
-    this.lengthTexts = this.shadowRoot.querySelectorAll(".length-unit");
-    this.capacityText = this.shadowRoot.querySelector(".capacity-unit");
-    this.areaText = this.shadowRoot.querySelector(".area-unit");
+    this.lengthTexts = this.shadow.querySelectorAll(".length-unit");
+    this.capacityText = this.shadow.querySelector(".capacity-unit");
+    this.areaText = this.shadow.querySelector(".area-unit");
 
     this.isMetric = true;
 
@@ -78,7 +78,7 @@ class PoolDimensions extends HTMLElement {
 
     this.setUnits();
 
-    if (this.data) {
+    if (this.data?.length && this.data?.width && this.data?.depth) {
       const { length, width, depth } = this.data;
       this.lengthInput.value = length;
       this.widthInput.value = width;
@@ -93,11 +93,11 @@ class PoolDimensions extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log(`[${this.getAttribute("id")}] attributeChangedCallback:`, {
-      name,
-      oldValue,
-      newValue,
-    });
+    // console.log(`[${this.getAttribute("id")}] attributeChangedCallback:`, {
+    //   name,
+    //   oldValue,
+    //   newValue,
+    // });
     switch (name) {
       case "units":
         this.setUnits();
@@ -139,9 +139,9 @@ class PoolDimensions extends HTMLElement {
   }
 
   calculate() {
-    let length = this.lengthInput.valueAsNumber;
-    let width = this.widthInput.valueAsNumber;
-    let depth = this.depthInput.valueAsNumber;
+    const length = this.lengthInput.valueAsNumber;
+    const width = this.widthInput.valueAsNumber;
+    const depth = this.depthInput.valueAsNumber;
 
     const capacity = length * width * depth * 1000; // cubic meters to liters
     const area = 2 * (width * depth + length * depth) + length * width; // walls + floor
@@ -160,6 +160,7 @@ class PoolDimensions extends HTMLElement {
   }
 
   get data() {
+    console.log(`[${this.getAttribute("id")}] get data:`);
     return {
       length: this.lengthInput.valueAsNumber,
       width: this.widthInput.valueAsNumber,
@@ -168,6 +169,11 @@ class PoolDimensions extends HTMLElement {
   }
 
   set data({ length, width, depth }) {
+    console.log(`[${this.getAttribute("id")}] set data:`, {
+      length,
+      width,
+      depth,
+    });
     this.lengthInput.value = length;
     this.widthInput.value = width;
     this.depthInput.value = depth;
