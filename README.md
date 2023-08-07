@@ -1,18 +1,9 @@
 # web-component-blogpost-demos
 
+Main example in `vanilla-js` folder. Step by step examles in `tests`.
 
-````
+## Run
 
-document.querySelector('#html-data-prop').data
+In root run `yarn install` go to any subfolder and run `yarn dev`.
 
-document.querySelector('#html-data-prop').data = {
-  length: 10,
-  width: 10,
-  depth: 10,
-}
 
-console.log(document.querySelector('#html-data-prop').getAttribute('units'))
-console.log(document.querySelector('#html-data-prop').units)
-document.querySelector('#html-data-prop').units = 'imperial'
-console.log(document.querySelector('#html-data-prop').getAttribute('units'))
-`````
